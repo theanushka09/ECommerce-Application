@@ -28,4 +28,13 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @PutMapping("/api/users/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable Long id , @RequestBody User updatedUser) {
+        boolean updated = userService.updateUser(id, updatedUser);
+        if(updated) {
+            return ResponseEntity.ok("User updated successfully");
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
