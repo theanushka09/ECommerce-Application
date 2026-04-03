@@ -21,12 +21,9 @@ public class UserService {
         return "User added successfully";
     }
 
-    public User fetchUser(Long id) {
-        for(User user : users) {
-            if(user.getId().equals(id)) {
-                return user;
-            }
-        }
-        return null;
+    public Optional<User> fetchUser(Long id) {
+        return users.stream()
+                .filter(user -> user.getId().equals(id))
+                .findFirst();
     }
 }
