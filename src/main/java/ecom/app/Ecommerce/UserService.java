@@ -27,13 +27,13 @@ public class UserService {
                 .findFirst();
     }
 
-    public boolean updateUser(Long id, User user) {
+    public boolean updateUser(Long id, User updatedUser) {
         return users.stream()
                 .filter(user -> user.getId().equals(id))
                 .findFirst()
                 .map(existingUser ->{
-                    existingUser.setFirstName(user.getFirstName());
-                    existingUser.setLastName(user.getLastName());
+                    existingUser.setFirstName(updatedUser.getFirstName());
+                    existingUser.setLastName(updatedUser.getLastName());
                     return true;
                 }).orElse(false);
     }
