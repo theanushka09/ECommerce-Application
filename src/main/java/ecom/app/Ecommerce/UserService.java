@@ -4,8 +4,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@Service //mark it as service that contains business logic
+@Service
 public class UserService {
 
     private List<User> users = new ArrayList<User>();
@@ -31,9 +32,9 @@ public class UserService {
         return users.stream()
                 .filter(user -> user.getId().equals(id))
                 .findFirst()
-                .map(existingUser ->{
-                    existingUser.setFirstName(updatedUser.getFirstName());
-                    existingUser.setLastName(updatedUser.getLastName());
+                .map(user ->{
+                    user.setFirstName(updatedUser.getFirstName());
+                    user.setLastName(updatedUser.getLastName());
                     return true;
                 }).orElse(false);
     }
